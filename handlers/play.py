@@ -30,7 +30,7 @@ from helpers.errors import DurationLimitError
 
 chat_id = None
 @Client.on_message(
-    filters.command("playthis")
+    filters.command("tg")
     & filters.group
     & ~ filters.edited
 )
@@ -84,8 +84,8 @@ async def playthis(client: Client, message_: Message):
         res.delete
         m = await client.send_photo(
         chat_id=message_.chat.id,
-        photo="https://telegra.ph/file/5113434dcbd3e627a8b5d.jpg",
-        caption=f"Don't Forget to add @IGRISMUSIC in group to listen your song.",
+        photo="https://telegra.ph/file/fa5805751e44608b1e162.png",
+        caption=f"Don't Forget to add @OdaHelper in group to listen your song.",
          ) 
         tgcalls.pytgcalls.join_group_call(message_.chat.id, file_path)
 
@@ -100,7 +100,7 @@ async def deezer(client: Client, message_: Message):
     queryy = text[1]
     res = await message_.reply_text(f"Searching 🔍🔎🔍🔎 for `{queryy}` on deezer")
     try:
-        ARQ_API = "WBEHZZ-VEPXPP-KBGKCJ-WILPNE-ARQ"
+        ARQ_API = "QSJCLE-ZIKUJJ-USRQMM-BLMYCR-ARQ"
         ARQ_API_URL = "https://thearq.tech"
         arq = ARQ(ARQ_API_URL, ARQ_API)
         r = await arq.deezer(query=queryy, limit=1)
@@ -116,7 +116,7 @@ async def deezer(client: Client, message_: Message):
         is_playing = False
         return
     file_path= await convert(wget.download(url))
-    await res.edit("Generating Thumbnail")
+    await res.edit("Creating Thumbnail")
     await generate_cover_square(requested_by, title, artist, duration, thumbnail)
     if message_.chat.id in tgcalls.pytgcalls.active_calls:
         await res.edit("adding in queue")
@@ -142,7 +142,7 @@ def changeImageSize(maxWidth, maxHeight, image):
     return newImage
  
 @Client.on_message(
-    filters.command("playm")
+    filters.command("play")
     & filters.group
     & ~ filters.edited
 )
@@ -151,7 +151,7 @@ async def playm(client: Client, message_: Message):
     chat_id=message_.chat.id
     text = message_.text.split(" ", 1)
     query = text[1]
-    res = await message_.reply_text(f"Searching... `{query}` on @IGRISXROBOT")
+    res = await message_.reply_text(f"Searching... `{query}` on @OdaRobot")
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
         link = f"https://youtube.com{results[0]['url_suffix']}"
@@ -178,7 +178,7 @@ async def playm(client: Client, message_: Message):
     res.delete
     m = await client.send_photo(
         chat_id=message_.chat.id,
-        caption=f"Add @IGRISMUSIC in group to listen this song `{query}` Via IGRISXROBOT",
+        caption=f"Add @OdaHelper in group to listen this song `{query}` Via @OdaRobot",
         photo="final.png",
         reply_markup=InlineKeyboardMarkup(
             [
@@ -236,7 +236,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
                 await f.close()
 
     image1 = Image.open("./background.png")
-    image2 = Image.open("etc/IGRIS.png")
+    image2 = Image.open("etc/Oda.png")
     image3 = changeImageSize(1280, 720, image1)
     image4 = changeImageSize(1280, 720, image2)
     image5 = image3.convert("RGBA")
