@@ -32,13 +32,13 @@ async def resume(client: Client, message: Message):
 
 
 @Client.on_message(
-    filters.command(["stopm", "end"])
+    filters.command(["stop", "end"])
     & filters.group
     & ~ filters.edited
 )
 @errors
 @admins_only
-async def stopm(client: Client, message: Message):
+async def stop(client: Client, message: Message):
     try:
         sira.clear(message.chat.id)
     except:
@@ -92,4 +92,4 @@ async def admincache(client, message: Message):
     & ~ filters.edited
 )
 async def helper(client , message:Message):
-     await message.reply_text("The commands and there use is explained here-: \n `/deezer` To search the song on deezer and get good quality stream \n `/playm` <your song name> play it on voice chat. \n '/playthis` Reply this in response to a link or any telegram audio file it will be played \n `/skip` to skip current song \n `/stopm or /kill` to stop the streaming of song \n `/pause` to pause the stream \n `/resume` to resume the playback. \n Inline search is also supported.")
+     await message.reply_text("The commands and there use is explained here-: \n `/deezer` To search the song on deezer and get good quality stream \n `/play` <your song name> play it on voice chat. \n '/tg` Reply this in response to a link or any telegram audio file it will be played \n `/skip` to skip current song \n `/end or /kill` to stop the streaming of song \n `/pause` to pause the stream \n `/resume` to resume the playback. \n Inline search is also supported.")
